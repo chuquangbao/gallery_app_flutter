@@ -36,6 +36,8 @@ dependencies:
   dio: ^5.0.1
   retrofit: ^4.0.1
   json_annotation: ^4.7.0
+  photo_view: ^0.14.0
+  shared_preferences: ^2.0.18 
 
 dev_dependencies:
   flutter_test:

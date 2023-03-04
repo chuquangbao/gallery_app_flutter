@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/photo_model.dart';
-import '../models/photo_list_response.dart';
 
 part 'photo_provider.g.dart';
 
@@ -23,7 +22,7 @@ abstract class PhotoProvider {
   Future<List<PhotoModel>> getUserPhotos(@Query('userId') int userId);
 
   @GET('/photos')
-  Future<PhotoListResponse> getPhotosByPage(
+  Future<List<PhotoModel>> getPhotosByPage(
     @Query('_page') int page,
     @Query('_limit') int limit,
   );

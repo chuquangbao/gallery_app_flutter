@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'photo_model.dart';
 
 class PhotoListResponse {
@@ -7,13 +9,10 @@ class PhotoListResponse {
     required this.photos,
   });
 
-  factory PhotoListResponse.fromJson(Map<String, dynamic> json) {
+  factory PhotoListResponse.fromJson(List array) {
     var photos = <PhotoModel>[];
-
-    if (json['photos'] != null) {
-      for (final photoJson in json['photos']) {
-        photos.add(PhotoModel.fromJson(photoJson));
-      }
+    for (final photoJson in array) {
+      photos.add(PhotoModel.fromJson(photoJson));
     }
     return PhotoListResponse(photos: photos);
   }

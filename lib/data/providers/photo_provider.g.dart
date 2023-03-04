@@ -119,7 +119,7 @@ class _PhotoProvider implements PhotoProvider {
   }
 
   @override
-  Future<PhotoListResponse> getPhotosByPage(
+  Future<List<PhotoModel>> getPhotosByPage(
     page,
     limit,
   ) async {
@@ -131,7 +131,7 @@ class _PhotoProvider implements PhotoProvider {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<PhotoListResponse>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<PhotoModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -143,7 +143,9 @@ class _PhotoProvider implements PhotoProvider {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PhotoListResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => PhotoModel.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

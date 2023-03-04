@@ -16,8 +16,8 @@ class PhotoEntity {
   factory PhotoEntity.fromModel(PhotoModel photoModel) {
     return PhotoEntity(
       id: photoModel.id,
-      title: photoModel.author,
-      thumbnailUrl: photoModel.url,
+      title: photoModel.title,
+      thumbnailUrl: photoModel.thumbnailUrl,
       imageUrl: photoModel.url,
     );
   }

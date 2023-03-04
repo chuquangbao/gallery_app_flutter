@@ -1,3 +1,4 @@
+import 'package:gallery_app_flutter/domain/entities/photo_entity.dart';
 import 'package:gallery_app_flutter/presentation/pages/gallery_page.dart';
 import 'package:gallery_app_flutter/presentation/pages/photo_view_page.dart';
 import 'package:get/get.dart';
@@ -10,13 +11,13 @@ class AppRouter {
     switch (settings.name) {
       case AppRoutes.gallery:
         return GetPageRoute(
-          page: () => const GalleryPage(),
+          page: () => GalleryPage(),
           settings: settings,
         );
       case AppRoutes.photoView:
-        final args = settings.arguments ?? '';
+        final args = settings.arguments as PhotoEntity;
         return GetPageRoute(
-          page: () => PhotoViewPage(photoUrl: args.toString()),
+          page: () => PhotoViewPage(photo: args),
           settings: settings,
         );
       default:

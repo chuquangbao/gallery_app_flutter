@@ -1,4 +1,3 @@
-import 'package:gallery_app_flutter/data/models/photo_model.dart';
 import 'package:gallery_app_flutter/domain/entities/photo_entity.dart';
 import 'package:gallery_app_flutter/domain/repositories/photo_repository.dart';
 
@@ -12,6 +11,6 @@ class GetPhotoListUseCaseImpl implements GetPhotoListUseCase {
   @override
   Future<List<PhotoEntity>> execute(
       {required int startIndex, required int limit}) {
-    return _photoRepository.getPhotoList(startIndex, limit);
+    return _photoRepository.getPhotosByPage(page: 1, limit: 30);
   }
 }
