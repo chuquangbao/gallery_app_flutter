@@ -40,6 +40,7 @@ dependencies:
   shared_preferences: ^2.0.18
   sqflite: any
   path_provider: any
+  mockito: any
 
 dev_dependencies:
   flutter_test:
