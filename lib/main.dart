@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gallery_app_flutter/data/providers/local_storage_provider.dart';
 import 'package:gallery_app_flutter/data/providers/network_module.dart';
 import 'package:gallery_app_flutter/data/providers/photo_provider.dart';
+import 'package:gallery_app_flutter/data/repositories/bookmark_repository_impl.dart';
 import 'package:gallery_app_flutter/data/repositories/photo_local_datasource.dart';
 import 'package:gallery_app_flutter/data/repositories/photo_repository_impl.dart';
+import 'package:gallery_app_flutter/domain/usecases/bookmark_usecase.dart';
+import 'package:gallery_app_flutter/domain/usecases/bookmark_usecase_impl.dart';
 import 'package:gallery_app_flutter/domain/usecases/get_photo_list_usecase_impl.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +29,11 @@ void initDIApplication() {
     localDataSource: localPhotoDataSource,
   );
   final getPhotoListUseCase = GetPhotoListUseCaseImpl(photoRepository);
+  // Bookmark Data Source
+  final bookMarkUseCase = BookmarkUseCaseImpl(
+      BookmarkRepositoryImpl(lsProvider: LocalStorageProvider()));
   Get.put(getPhotoListUseCase, permanent: true); // Global Singleton Instance
+  Get.put(bookMarkUseCase, permanent: true);
 }
 
 class MyApp extends StatelessWidget {

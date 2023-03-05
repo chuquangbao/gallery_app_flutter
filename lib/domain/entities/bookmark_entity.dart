@@ -1,28 +1,28 @@
-import 'package:gallery_app_flutter/data/models/photo_model.dart';
+import 'package:gallery_app_flutter/data/models/bookmark_model.dart';
 
-class PhotoEntity {
+class BookmarkEntity {
   final int id;
   final String title;
   final String thumbnailUrl;
   final String imageUrl;
 
-  PhotoEntity({
+  BookmarkEntity({
     required this.id,
     required this.title,
     required this.thumbnailUrl,
     required this.imageUrl,
   });
 
-  factory PhotoEntity.fromModel(PhotoModel photoModel) {
-    return PhotoEntity(
+  factory BookmarkEntity.fromModel(BookmarkModel photoModel) {
+    return BookmarkEntity(
       id: photoModel.id,
       title: photoModel.title,
       thumbnailUrl: photoModel.thumbnailUrl,
-      imageUrl: photoModel.url,
+      imageUrl: photoModel.imageUrl,
     );
   }
-  factory PhotoEntity.fromJson(Map<String, dynamic> json) {
-    return PhotoEntity(
+  factory BookmarkEntity.fromJson(Map<String, dynamic> json) {
+    return BookmarkEntity(
       id: json['id'],
       title: json['title'],
       imageUrl: json['url'],

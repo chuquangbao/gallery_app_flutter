@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_app_flutter/presentation/controllers/gallery_controller.dart';
+import 'package:gallery_app_flutter/presentation/controllers/bookmarks_controller.dart';
 import 'package:get/get.dart';
 
-class GalleryPage extends StatelessWidget {
-  final mController = GalleryController();
-  GalleryPage({Key? key}) : super(key: key);
+class BookmarkPage extends StatelessWidget {
+  final mController = BookmarkController();
+  BookmarkPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var body = Obx(() {
-      var photos = mController.photos.value;
-      var isLoading = mController.isLoading.value;
+      var photos = mController.bookmarks.value;
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Gallery Flutter'),
-          actions: [
-            ButtonBar(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    mController.onBookMarksPressed();
-                  },
-                  child: Text('Bookmarks'),
-                ),
-              ],
-            ),
-          ],
+          title: const Text('Bookmarks'),
         ),
         body: RefreshIndicator(
           onRefresh: () async {
             mController.loadPhotos();
           },
-          child: isLoading
-              ? _renderLoading()
+          child: mController.isNoData
+              ? _renderNoDataPage()
               : GridView.builder(
                   controller: mController.scrollController,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -67,23 +54,25 @@ class GalleryPage extends StatelessWidget {
     );
   }
 
-  Widget _renderLoading() {
+  Widget _renderNoDataPage() {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircularProgressIndicator(
-            color: Colors.red[400],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const Text(
-            'Loading',
-            style: TextStyle(fontSize: 16),
-          )
-        ],
-      ),
-    );
+        child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+            height: 100,
+            width: 100,
+            child: Image.asset(
+              'assets/images/empty.png',
+            )),
+        const SizedBox(
+          height: 10,
+        ),
+        const Text(
+          'Touch icon ♡ when view photo',
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ));
   }
 }

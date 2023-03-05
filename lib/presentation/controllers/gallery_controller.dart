@@ -78,4 +78,8 @@ class GalleryController extends GetxController {
   void onPhotoSelected(int index) {
     Get.toNamed(AppRoutes.photoView, arguments: photos[index]);
   }
+
+  void onBookMarksPressed() {
+    Get.toNamed(AppRoutes.bookmarks);
+  }
 }

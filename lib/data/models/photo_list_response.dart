@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'photo_model.dart';
 
 class PhotoListResponse {
