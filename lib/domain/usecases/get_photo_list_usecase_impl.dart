@@ -11,6 +11,6 @@ class GetPhotoListUseCaseImpl implements GetPhotoListUseCase {
   @override
   Future<List<PhotoEntity>> execute(
       {required int startIndex, required int limit}) {
-    return photoRepository.getPhotosByPage(page: 1, limit: 30);
+    return photoRepository.getPhotosByPage(page: startIndex, limit: 30);
   }
 }
